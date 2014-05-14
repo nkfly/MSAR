@@ -39,15 +39,15 @@
 typedef struct{
         unsigned short FormatTag;         
 		unsigned short Channels;         
-		unsigned long SampleRate;   
-		unsigned long AvgBytesPerSec;  
+		unsigned int SampleRate;   
+		unsigned int AvgBytesPerSec;  
 		unsigned short BlockAlign;
         unsigned short Bits;
         } fmtChunk;
 
 typedef struct{
         char ID[4];
-        unsigned long Length;
+        unsigned int Length;
         } wHeader;
 
 void DoFFT(float *fftBuffer, long fftFrameSize, long sign)
@@ -63,6 +63,7 @@ void DoFFT(float *fftBuffer, long fftFrameSize, long sign)
 	of the frequencies of interest is in fftBuffer[0...fftFrameSize].
 */
 {
+
 	float wr, wi, arg, *p1, *p2, temp;
 	float tr, ti, ur, ui, *p1r, *p1i, *p2r, *p2i;
 	long i, bitm, j, le, le2, k;
@@ -266,7 +267,8 @@ int main(int argc, char *argv[]){
     char WaveId[4];
     wHeader infileHeader;
     fmtChunk infileChunk;
-    unsigned long Count, DataSize, tmpDataSize, tmpRIFFSize, FilePos;
+    unsigned long Count, DataSize, tmpDataSize, FilePos;
+    unsigned int tmpRIFFSize;
 
     float LPCutoff, HPCutoff;
     double a1[3],b1[3],a2[3],b2[3];
@@ -303,128 +305,88 @@ int main(int argc, char *argv[]){
     /* Read Header from Input Wave File*/
     if ((infile = fopen(infilename,"rb+")) == NULL) {
         printf("\n\nError(1): Could not open input file \"%s\".\n",infilename); return(1);}
-
-    int RIFF = 0;
-    fread(&RIFF, 4, 1, infile);
-    printf("RIFF:%d\n", RIFF);
-
-    int lengthInBytesWithoutHeader = 0;
-    fread(&lengthInBytesWithoutHeader, 4, 1, infile);
-    printf("lengthInBytesWithoutHeader:%d\n", lengthInBytesWithoutHeader);
-
-    long waveFmt = 0;
-    fread(&waveFmt, 8, 1, infile);
-    printf("waveFmt:%ld\n", waveFmt);
-
-    int lengthOfPCMDeclarationArea = 0;
-    fread(&lengthOfPCMDeclarationArea, 4, 1, infile);
-    printf("lengthOfPCMDeclarationArea:%ld\n", lengthOfPCMDeclarationArea);
-//////////////////////////////////////////////// In chunk
-    short pcm = 0;
-    fread(&pcm, 2, 1, infile);
-    printf("pcm:%d\n", pcm);
-
-    short numberOfChannel = 0;
-    fread(&numberOfChannel  , 2, 1, infile);
-    printf("numberOfChannel:%d\n", numberOfChannel);
-
-    int sampleRate = 0;
-    fread(&sampleRate  , 4, 1, infile);
-    printf("sampleRate:%d\n", sampleRate);
-
-    int bytesPerSecond = 0;
-    fread(&bytesPerSecond  , 4, 1, infile);
-    printf("bytesPerSecond:%d\n", bytesPerSecond);
-
-    short bytesPerSampleTime = 0;
-    fread(&bytesPerSampleTime  , 2, 1, infile);
-    printf("bytesPerSampleTime:%d\n", bytesPerSampleTime);
-
-    short bitsPerSample = 0;
-    fread(&bitsPerSample  , 2, 1, infile);
-    printf("bitsPerSample:%d\n", bitsPerSample);
-
-    int dataSectionLabel = 0;
-    fread(&dataSectionLabel  , 4, 1, infile);
-    printf("dataSectionLabel:%d\n", dataSectionLabel);
-
-    int lengthOfPCMDataInBytes = 0;
-    fread(&lengthOfPCMDataInBytes  , 4, 1, infile);
-    printf("lengthOfPCMDataInBytes:%d\n", lengthOfPCMDataInBytes);
-
-
     
-    // fread(&infileHeader, sizeof(infileHeader), 1, infile);
-    // if ((infileHeader.ID[0]!='R')||(infileHeader.ID[1]!='I')
-    //    ||(infileHeader.ID[2]!='F')||(infileHeader.ID[3]!='F')) {
-    //      printf("\n\nError(3): \"%s\" is not a standrad RIFF file.\n",infilename);
-    //        fclose(infile); return(3);}
+    fread(&infileHeader, sizeof(infileHeader), 1, infile);
+    if ((infileHeader.ID[0]!='R')||(infileHeader.ID[1]!='I')
+       ||(infileHeader.ID[2]!='F')||(infileHeader.ID[3]!='F')) {
+         printf("\n\nError(3): \"%s\" is not a standrad RIFF file.\n",infilename);
+           fclose(infile); return(3);}
 
-    // fread(&WaveId, sizeof(WaveId), 1, infile);
-    // if ((WaveId[0]!='W')||(WaveId[1]!='A')||(WaveId[2]!='V')||(WaveId[3]!='E')) {
-    //     printf("\n\nError(4): Could not find correct WAVE header form \"%s\".\n", infilename);
-    //        fclose(infile); return(4);}
-    
+    unsigned long waveFmt = 0;
+    fread(&waveFmt, sizeof(waveFmt), 1, infile);
     // if ((WaveId[0]!='W')||(WaveId[1]!='A')||(WaveId[2]!='V')||(WaveId[3]!='E')) {
     //     printf("\n\nError(4): Could not find correct WAVE header form \"%s\".\n", infilename);
     //        fclose(infile); return(4);}
 
-
-    // fread(&infileHeader, sizeof(infileHeader), 1, infile);
-    // if ((infileHeader.ID[0]!='f')||(infileHeader.ID[1]!='m')
-    //   ||(infileHeader.ID[2]!='t')||(infileHeader.ID[3]!=' ')) {
+    int length = 0;
+    //wHeader waveFmtHeader;           
+    fread(&length, sizeof(length), 1, infile);
+    infileHeader.Length = length;
+    //memcpy(&infileHeader, &waveFmtHeader, sizeof(waveFmtHeader));
+    // if ((waveFmtHeader.ID[0]!='f')||(waveFmtHeader.ID[1]!='m')
+    //   ||(waveFmtHeader.ID[2]!='t')||(waveFmtHeader.ID[3]!=' ')) {
     //     printf("\n\nError(5): Could not find correct chunk header form \"%s\".\n", infilename);
     //        fclose(infile); return(5);}
     
-    // fread(&infileChunk, sizeof(infileChunk), 1, infile);
-    // fseek(infile, ftell(infile) + infileHeader.Length - 16, 0);
-    // /* Display the input file format*/
-    // if (infileChunk.FormatTag == 1) printf("(Windows PCM");
-    // if (infileChunk.FormatTag == 3) printf("(IEEE float");
-    // printf(", %d Hz, %d bit, ", infileChunk.SampleRate, infileChunk.Bits);
-    // if (infileChunk.Channels == 1) printf("mono)\n"); else
-    // if (infileChunk.Channels == 2) printf("stereo)\n"); else
-    // printf("%d channels)\n", infileChunk.Channels);
-    // /* end */
-    // if ((infileChunk.FormatTag!=0x0001)&&(infileChunk.FormatTag!=0x0003)) {
-    //     printf("\nError(6): \"%s\" is not a PCM or IEEE float wave file.\n",infilename);
-    //       fclose(infile); return(6);}
-    // if (infileChunk.Channels!=2) {
-    //     printf("\nError(7): \"%s\" is not stereo.\n",infilename);
-    //       fclose(infile); return(7);}
-    // if ((infileChunk.Bits!=8)&&(infileChunk.Bits!=16)&&(infileChunk.Bits!=24)&&(infileChunk.Bits!=32))
-    //     { printf("\nError(8): VoiX could not process %d bit wave files.\n", infileChunk.Bits);
-    //       fclose(infile); return(8);}
-    // if (infileChunk.Bits/8*infileChunk.Channels!=infileChunk.BlockAlign)
-    //     { printf("\nError(9): VoiX could not process non-standrad wave files.\n");
-    //       fclose(infile); return(9);}
-    // fread(&infileHeader, sizeof(infileHeader), 1, infile);
-    // while (((infileHeader.ID[0]!='d')||(infileHeader.ID[1]!='a')||
-    //       (infileHeader.ID[2]!='t')||(infileHeader.ID[3]!='a'))
-    // &&(!feof(infile))) {
-    // fseek(infile, ftell(infile) + infileHeader.Length, 0); 
-    // fread(&infileHeader, sizeof(infileHeader), 1, infile);
-    // }
-    // if (feof(infile)) {
-    //    printf("\nError(10): Could not find correct data header form \"%s\".\n", infilename);
-    //      fclose(infile); return(10);}
-    // printf("Output: %s\n", outfilename);
-    // if ((outfile = fopen(outfilename,"wb+")) == NULL) {
-    //     printf("\nError(2): Could not open output file \"%s\".\n",outfilename);
-    //       fclose(infile); return(2);}
+    fread(&infileChunk, sizeof(infileChunk), 1, infile);
+    fseek(infile, ftell(infile) + infileHeader.Length - 16, 0);
+    /* Display the input file format*/
+    if (infileChunk.FormatTag == 1) printf("(Windows PCM");
+    if (infileChunk.FormatTag == 3) printf("(IEEE float");
+    printf(", %d Hz, %d bit, ", infileChunk.SampleRate, infileChunk.Bits);
+    if (infileChunk.Channels == 1) printf("mono)\n"); else
+    if (infileChunk.Channels == 2) printf("stereo)\n"); else
+    printf("%d channels)\n", infileChunk.Channels);
+    /* end */
+    if ((infileChunk.FormatTag!=0x0001)&&(infileChunk.FormatTag!=0x0003)) {
+        printf("\nError(6): \"%s\" is not a PCM or IEEE float wave file.\n",infilename);
+          fclose(infile); return(6);}
+    if (infileChunk.Channels!=2) {
+        printf("\nError(7): \"%s\" is not stereo.\n",infilename);
+          fclose(infile); return(7);}
+    if ((infileChunk.Bits!=8)&&(infileChunk.Bits!=16)&&(infileChunk.Bits!=24)&&(infileChunk.Bits!=32))
+        { printf("\nError(8): VoiX could not process %d bit wave files.\n", infileChunk.Bits);
+          fclose(infile); return(8);}
+    if (infileChunk.Bits/8*infileChunk.Channels!=infileChunk.BlockAlign)
+        { printf("\nError(9): VoiX could not process non-standrad wave files.\n");
+          fclose(infile); return(9);}
+    fread(&infileHeader, sizeof(infileHeader), 1, infile);
+    while (((infileHeader.ID[0]!='d')||(infileHeader.ID[1]!='a')||
+          (infileHeader.ID[2]!='t')||(infileHeader.ID[3]!='a'))
+    &&(!feof(infile))) {
+    fseek(infile, ftell(infile) + infileHeader.Length, 0); 
+    fread(&infileHeader, sizeof(infileHeader), 1, infile);
+    }
+    if (feof(infile)) {
+       printf("\nError(10): Could not find correct data header form \"%s\".\n", infilename);
+         fclose(infile); return(10);}
+    printf("Output: %s\n", outfilename);
+    if ((outfile = fopen(outfilename,"wb+")) == NULL) {
+        printf("\nError(2): Could not open output file \"%s\".\n",outfilename);
+          fclose(infile); return(2);}
     
     /* Write Header to Output Wave File*/
     DataSize = infileHeader.Length;
     tmpDataSize = 0;
-    //strcpy(infileHeader.ID,"RIFF"); infileHeader.Length = tmpDataSize+36;
-    //fwrite(&infileHeader,sizeof(infileHeader),1,outfile);
-    fwrite(&RIFF,sizeof(RIFF),1,outfile);
-    fwrite(&lengthInBytesWithoutHeader,sizeof(lengthInBytesWithoutHeader),1,outfile);// write anyway, will write again at the end
-    fwrite(&waveFmt,sizeof(waveFmt),1,outfile);
-
+    strcpy(infileHeader.ID,"RIFF"); infileHeader.Length = tmpDataSize+36;
+    fwrite(&infileHeader,sizeof(infileHeader),1,outfile);
     //strcpy(WaveId,"WAVE"); fwrite(WaveId,sizeof(WaveId),1,outfile);
     //strcpy(infileHeader.ID,"fmt "); infileHeader.Length = 16;
-    //fwrite(&infileHeader,sizeof(infileHeader),1,outfile);
+    fwrite(&waveFmt,sizeof(waveFmt),1,outfile);
+    fwrite(&length,sizeof(length),1,outfile);
+    // char fmt[4];
+    // fmt[0] = 'W';
+    // fmt[1] = 'A';
+    // fmt[2] = 'V';
+    // fmt[3] = 'E';
+    // fwrite(fmt,4,1,outfile);
+    // fmt[0] = 'f';
+    // fmt[1] = 'm';
+    // fmt[2] = 't';
+    // fmt[3] = '  ';
+    // fwrite(fmt,4,1,outfile);
+    
+    
     fwrite(&infileChunk,sizeof(infileChunk),1,outfile);
     strcpy(infileHeader.ID,"data"); infileHeader.Length = tmpDataSize;
     fwrite(&infileHeader,sizeof(infileHeader),1,outfile);    
@@ -606,9 +568,11 @@ int main(int argc, char *argv[]){
     tmpDataSize = DataSize;
     FilePos = ftell(outfile);
     tmpRIFFSize = tmpDataSize + 36;
-    fseek(outfile,4,0); fwrite(&tmpRIFFSize,sizeof(tmpRIFFSize),1,outfile);
+    fseek(outfile,4,0); fwrite(&tmpRIFFSize,sizeof(tmpRIFFSize),1,outfile); 
     fseek(outfile,40,0); fwrite(&tmpDataSize,sizeof(tmpDataSize),1,outfile);        
     fseek(outfile,FilePos,0);    
     printf("\n(i)Done processing file!\n");
+    
+
     fclose(infile); fclose(outfile); return(0);
 }
