@@ -16,28 +16,45 @@ import net.beadsproject.beads.ugens.SamplePlayer;
 
 
 
+
 public class Main{
-	public static void main(String [] argc){
+	public static void main(String [] argc) throws OperationUnsupportedException, FileFormatException{
 		WavFileReaderWriter wavFileReader = new WavFileReaderWriter();
 		try {
 			AudioContext ac = new AudioContext();
 			
-			SamplePlayer sp = new SamplePlayer(ac, new Sample("godKnows.wav"));
-			BiquadFilter filter1 = new BiquadFilter(ac, 2); 
-			filter1.setType(BiquadFilter.HP); 
-			filter1.setFrequency(2000.0f); 
-			filter1.setQ(0.5f); 
-			filter1.addInput(sp);
-			Glide gainValue = new Glide(ac, 0, 20);
-			Gain g = new Gain(ac, 1, gainValue);
-			g.addInput(filter1);
+			String wavFileName = "godKnows.wav";
+			WavFileReaderWriter wavReaderWriter =  new WavFileReaderWriter(); 
+			//SamplePlayer sp = new SamplePlayer(ac, new Sample(wavFileName));
 			
-			ac.out.addInput(g);
-			ac.start();
+			String outputName = "out_" + wavFileName;
+			double lambda = 1;
+			int nFFT = 1024;
+			int windowSize = 1024;
+			int maskType = 1;
+			double gain = 1;
+			double power = 1;
+			double fs = wavReaderWriter.getSampleAudioFormat().sampleRate;
+			float[][] wavData = wavReaderWriter.readAudioFile(wavFileName);
+			// only take one channel
 			
-			gainValue.setValue((float)0.9);
-			sp.setToLoopStart();
-			sp.start();
+			
+			
+//			BiquadFilter filter1 = new BiquadFilter(ac, 2); 
+//			filter1.setType(BiquadFilter.HP); 
+//			filter1.setFrequency(2000.0f); 
+//			filter1.setQ(0.5f); 
+//			filter1.addInput(sp);
+//			Glide gainValue = new Glide(ac, 0, 20);
+//			Gain g = new Gain(ac, 1, gainValue);
+//			g.addInput(filter1);
+//			
+//			ac.out.addInput(g);
+//			ac.start();
+//			
+//			gainValue.setValue((float)0.9);
+//			sp.setToLoopStart();
+//			sp.start();
 
 
 //			float[][] wavData = wavFileReader.readAudioFile("godKnows.wav");
@@ -61,5 +78,6 @@ public class Main{
 		
 		
 	}
+
 	
 }
