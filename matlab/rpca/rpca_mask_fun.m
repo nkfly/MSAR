@@ -15,7 +15,9 @@ function Parms=rpca_mask_fun(wavinA,wavinE,wavinmix,parm)
     S = scf * stft(wavinmix, nFFT ,winsize, hop);
 
    %% use inexact_alm_rpca to run RPCA
-    try                
+    try
+        %abs(S).^power'
+        size(S)
         [A_mag E_mag] = inexact_alm_rpca(abs(S).^power',lambda/sqrt(max(size(S))));
         PHASE = angle(S');            
     catch err

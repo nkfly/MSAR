@@ -37,7 +37,7 @@ public class Main{
 			double fs = wavReaderWriter.getSampleAudioFormat().sampleRate;
 			float[][] wavData = wavReaderWriter.readAudioFile(wavFileName);
 			// only take one channel
-			
+			RPCA.process(wavData[0], outputName, lambda, nFFT, windowSize, maskType, gain, power, fs);
 			
 			
 //			BiquadFilter filter1 = new BiquadFilter(ac, 2); 
