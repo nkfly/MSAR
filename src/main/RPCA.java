@@ -11,6 +11,9 @@ class Complex{
 		real = r;
 		imaginary = i;
 	}
+	public double abs() {
+		return Math.sqrt(real*real + imaginary*imaginary);
+	}
 }
 
 public class RPCA {
@@ -21,6 +24,14 @@ public class RPCA {
 		int hop = windowSize/4;
 		double scf = 2/3;
 		Complex[][] complex = stft(wavData, nFFT, windowSize, hop, 8000);
+		
+		double [][] transpose = new double[complex[0].length][complex.length];
+		for (int i = 0;i < complex.length;i++) {
+			for (int j = 0;j < complex[i].length;j++) {
+				transpose[j][i] = Math.pow(complex[i][j].abs(), power);
+			}
+		}
+		inexactAlmRpca(transpose, lambda/Math.sqrt(Math.max(complex.length, complex[0].length)), 1e-7, 1000);
 		
 		
 		
@@ -89,8 +100,7 @@ public class RPCA {
 		
 	}
 	
-	public static float [] inexactAlmRpca(float [] wavData, int nFFt, int windowSize, int hop, int sr) {
-		int s = wavData.length;
+	public static float [] inexactAlmRpca(double [][] wavData, double lambda, double tol, int maxIter) {
 		
 		
 		return null;

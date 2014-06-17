@@ -37,7 +37,7 @@ parm.gain=1;
 parm.power=1;
 parm.fs=Fs;
 
-Parms=rpca_mask_fun(wavinA,wavinE,wavinmix,parm); % SDR(\hat(v),v),                    
+Parms=rpca_mask_fun(wavinA,wavinE,wavinmix(:,1),parm); % SDR(\hat(v),v),                    
 
 %% NSDR=SDR(estimated voice, voice)-SDR(mixture, voice)
 %NSDR=Parms.SDR-sdr_;                               
