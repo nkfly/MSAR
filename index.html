@@ -6,8 +6,8 @@
 
 		<title>Strengthen Vocal From Song</title>
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-  		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-  		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -33,13 +33,6 @@
 				document.getElementsByTagName( 'head' )[0].appendChild( link );
 			}
 		</script>
-		
-		<script>
-			$(document).ready(function(){
-				$( "#iframe1" ).resizable();
-				$( "#iframe2" ).resizable();
-			});
-		</script>
 
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
@@ -48,140 +41,140 @@
 
 	<body>
 
-        <div class="reveal">
-            <!-- Any section element inside of this container is displayed as a slide -->
-            <div class="slides">
-                <section>
-                    <h1>Strengthen Vocal From Song</h1>
-                    <p>MSAR Project</p>
-                    <hr>
-                    <h3>Team 13: 人聲海海</h3>
-                    <h3>洪立遠、方昱証、簡名沅</h3>
-                    <p>2014-06-19</p>
-                </section>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Strengthen Vocal From Song</h1>
+					<p>MSAR Project</p>
+					<hr>
+					<h3>Team 13: 人聲海海</h3>
+					<h3>洪立遠、方昱証、簡名沅</h3>
+					<p>2014-06-19</p>
+				</section>
 
-                <section>
-                    <section>
-                        <div id="iframe1" style="height: 300px;" class="ui-widget-content">
-                            <iframe width="100%" height="800" src="http://localhost:8080/wutadove/search"></iframe>
-                        </div>
-                        <p></p>
-                        <div id="iframe2" style="height: 300px;" class="ui-widget-content">
-                            <iframe width="100%" height="800" src="http://localhost:8080/wutadove/search"></iframe>
-                        </div>
-                    </section>
+				<section>
+					<section style="padding: 0; margin: 0">
+						<div class="iframe-wrapper" style="height: 340px; width: 114%; margin-left: -7.5%;" class="ui-widget-content">
+							<iframe style="width: 100%; height: 800px;" src="http://localhost:8080/wutadove/search"></iframe>
+						</div>
+						<p></p>
+						<div class="iframe-wrapper" style="height: 340px; width: 114%; margin-left: -7.5%;" class="ui-widget-content">
+							<iframe style="width: 100%; height: 800px;" src="http://localhost:8080/wutadove/search"></iframe>
+						</div>
+					</section>
 
-                    <section>
-                        <h2>唱日文歌學日文</h2>
-                        <img class="stretch" src="img/wutadove_reason.png" alt="reason">
-                    </section>
+					<section>
+						<h2>唱日文歌學日文</h2>
+						<img class="stretch" src="img/wutadove_reason.png" alt="reason">
+					</section>
 
-                    <section>
-                        <h2>System Architecture</h2>
-                        <img class="stretch" src="img/wutadove_sa.png" alt="system architecture">
-                    </section>
-                </section>
+					<section>
+						<h2>System Architecture</h2>
+						<img class="stretch" src="img/wutadove_sa.png" alt="system architecture">
+					</section>
+				</section>
 
-                <section>
-                    <section>
-                        <h2>The Algorithm</h2>
-                        <p>
-                        SINGING-VOICE SEPARATION FROM MONAURAL RECORDINGS USING
-                        <strong>ROBUST PRINCIPAL COMPONENT ANALYSIS</strong>
-                        </p>
-                        <small>Huang, P. S., Chen, S. D., Smaragdis, P., &amp; Hasegawa-Johnson, M. (2012, March). Singing-voice separation from monaural recordings using robust principal component analysis. In Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on (pp. 57-60). IEEE.</small>
-                    </section>
+				<section>
+					<section>
+						<h2>The Algorithm</h2>
+						<p>
+						SINGING-VOICE SEPARATION FROM MONAURAL RECORDINGS USING
+						<strong>ROBUST PRINCIPAL COMPONENT ANALYSIS</strong>
+						</p>
+						<small>Huang, P. S., Chen, S. D., Smaragdis, P., &amp; Hasegawa-Johnson, M. (2012, March). Singing-voice separation from monaural recordings using robust principal component analysis. In Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on (pp. 57-60). IEEE.</small>
+					</section>
 
-                    <section>
-                        <img class="stretch" src="img/flowChart.PNG" alt="flow chart">
-                    </section>
+					<section>
+						<img class="stretch" src="img/flowChart.PNG" alt="flow chart">
+					</section>
 
-                    <section>
-                        <h2>Robust Principle Component Analysis (RPCA)</h2>
-                        <p class="fragment">
-                            <strong>Proposed by Candes et al </strong><br>
-                            “Robust principal component analysis?,” J. ACM, vol. 58, pp.11:1–11:37, Jun. 2011.
-                        </p>
-                        <p class="fragment" style="margin-top: 20px;">
-                        <strong>Recover low-rank matrix</strong><br>
-                        <img src="img/RPCA.PNG" alt="RPCA" style="height: 100px;">
-                        </p>
-                        <p class="fragment">
-                        <strong>Solve by inexact Augmented Lagrange Multiplier Method</strong>
-                        </p>
-                    </section>
+					<section>
+						<h2>Robust Principle Component Analysis (RPCA)</h2>
+						<p class="fragment">
+							<strong>Proposed by Candes et al </strong><br>
+							“Robust principal component analysis?,” J. ACM, vol. 58, pp.11:1–11:37, Jun. 2011.
+						</p>
+						<p class="fragment" style="margin-top: 20px;">
+						<strong>Recover low-rank matrix</strong><br>
+						<img src="img/RPCA.PNG" alt="RPCA" style="height: 100px;">
+						</p>
+						<p class="fragment">
+						<strong>Solve by inexact Augmented Lagrange Multiplier Method</strong>
+						</p>
+					</section>
 
-                    <section>
-                        <img src="img/left-arrow.png" alt="↙" style="margin-top: 0; margin-bottom: 0;"/>
-                        <img src="img/M.PNG" alt="Original Matrix" style="margin-top: 0; margin-bottom: 0; height: 300px;" />
-                        <img src="img/right-arrow.png" alt="↘" style="margin-top: 0; margin-bottom: 0;" />
-                        <img src="img/L.PNG" alt="Low-Rank Matrix" style="float: left; margin-top: 0; margin-bottom: 0; height: 300px;" />
-                        <img src="img/S.PNG" alt="Sparse Matrix" style="float: right; margin-top: 0; margin-bottom: 0; height: 300px;" />
-                    </section>
+					<section>
+						<img src="img/left-arrow.png" alt="↙" style="margin-top: 0; margin-bottom: 0;"/>
+						<img src="img/M.PNG" alt="Original Matrix" style="margin-top: 0; margin-bottom: 0; height: 300px;" />
+						<img src="img/right-arrow.png" alt="↘" style="margin-top: 0; margin-bottom: 0;" />
+						<img src="img/L.PNG" alt="Low-Rank Matrix" style="float: left; margin-top: 0; margin-bottom: 0; height: 300px;" />
+						<img src="img/S.PNG" alt="Sparse Matrix" style="float: right; margin-top: 0; margin-bottom: 0; height: 300px;" />
+					</section>
 
-                    <section>
-                        <h2>RPCA (contd)</h2>
-                        <strong>Effect of λ</strong><br><br>
-                        <ul>
-                            <li>
-                            Rule of Thumb<br>
-                            <img src="img/lambda.PNG" alt="λ_k = k / sqrt(max(n_1, n_2))" style="height: 80px">
-                            </li>
-                            <li>
-                            Matrix S is sparser with higher λ.
-                            </li>
-                        </ul>
-                    </section>
-                </section>
+					<section>
+						<h2>RPCA (contd)</h2>
+						<strong>Effect of λ</strong><br><br>
+						<ul>
+							<li>
+							Rule of Thumb<br>
+							<img src="img/lambda.PNG" alt="λ_k = k / sqrt(max(n_1, n_2))" style="height: 80px">
+							</li>
+							<li>
+							Matrix S is sparser with higher λ.
+							</li>
+						</ul>
+					</section>
+				</section>
 
-                <section>
-                    <section>
-                        <h1>Evaluation</h1>
-                        <p>MIR-1K dataset + BSS-EVAL metrics</p>
-                    </section>
+				<section>
+					<section>
+						<h1>Evaluation</h1>
+						<p>MIR-1K dataset + BSS-EVAL metrics</p>
+					</section>
 
-                    <section>
-                        <h2>Dataset</h2>
-                        <ul>
-                            <li>MIR-1K dataset</li>
-                            <li>4 to 13 sec</li>
-                            <li>Extracted from 110 Chinese karaoke pop songs</li>
-                            <li>(sample)</li>
-                            <li>The singing voice and the music were mixed at -5, 0, 5 dB SNRs, respectively<br>
-                            (i.e. the mixture with 5 dB SNR has the most louder voice)</li>
-                        </ul>
-                    </section>
+					<section>
+						<h2>Dataset</h2>
+						<ul>
+							<li>MIR-1K dataset</li>
+							<li>4 to 13 sec</li>
+							<li>Extracted from 110 Chinese karaoke pop songs</li>
+							<li>(sample)</li>
+							<li>The singing voice and the music were mixed at -5, 0, 5 dB SNRs, respectively<br>
+							(i.e. the mixture with 5 dB SNR has the most louder voice)</li>
+						</ul>
+					</section>
 
-                    <section>
-                        <h2>BSS-EVAL metrics</h2>
-                        <ul>
-                            <li>
-                            <img src="img/SIR.PNG" alt="SIR" style="height: 100px; vertical-align: middle;">
-                            </li>
-                            <li>
-                            <img src="img/SAR.PNG" alt="SAR" style="height: 100px; vertical-align: middle;">
-                            </li>
-                            <li>
-                            <img src="img/SDR.PNG" alt="SDR" style="height: 100px; vertical-align: middle;">
-                            </li>
-                        </ul>
-                    </section>
+					<section>
+						<h2>BSS-EVAL metrics</h2>
+						<ul>
+							<li>
+							<img src="img/SIR.PNG" alt="SIR" style="height: 100px; vertical-align: middle;">
+							</li>
+							<li>
+							<img src="img/SAR.PNG" alt="SAR" style="height: 100px; vertical-align: middle;">
+							</li>
+							<li>
+							<img src="img/SDR.PNG" alt="SDR" style="height: 100px; vertical-align: middle;">
+							</li>
+						</ul>
+					</section>
 
-                    <section>
-                        <img class="stretch" src="img/result.PNG" alt="Result">
-                    </section>
+					<section>
+						<img class="stretch" src="img/result.PNG" alt="Result">
+					</section>
 
-                    <section>
-                        <img class="stretch" src="img/result2.PNG" alt="Result">
-                    </section>
-                </section>
+					<section>
+						<img class="stretch" src="img/result2.PNG" alt="Result">
+					</section>
+				</section>
 
-                <section>
-                    <h1>THE END</h1>
-                    <h3>Questions?</h3>
-                </section>
-            </div>
-        </div>
+				<section>
+					<h1>THE END</h1>
+					<h3>Questions?</h3>
+				</section>
+			</div>
+		</div>
 
 		<script type="text/javascript" src="lib/js/head.min.js"></script>
 		<script type="text/javascript" src="js/reveal.js"></script>
@@ -197,7 +190,8 @@
 				center: true,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+				backgroundTransition: 'fade',  // default/none/slide/concave/convex/zoom
 
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
@@ -213,7 +207,6 @@
 					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
-
 		</script>
 	</body>
 </html>
