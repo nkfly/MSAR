@@ -30,7 +30,7 @@ var Reveal = (function(){
 			maxScale: 1.0,
 
 			// Display controls in the bottom right corner
-			controls: false,
+			controls: true,
 
 			// Display a presentation progress bar
 			progress: true,

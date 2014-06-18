@@ -1,11 +1,9 @@
 .DS_Store
 .svn
-*.class
-
 log/*.log
 tmp/**
 node_modules/
-target/
+.sass-cache
 
 # vim undo file
 *~
