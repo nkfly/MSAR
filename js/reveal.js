@@ -19,21 +19,21 @@ var Reveal = (function(){
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
 			// when the presentation is scaled to fit different resolutions
-			width: "100%",
+			width: 960,
 			height: 700,
 
 			// Factor of the display size that should remain empty around the content
-			margin: 0.0,
+			margin: 0.1,
 
 			// Bounds for smallest/largest possible scale to apply to content
-			minScale: 0.0,
-			maxScale: 0.0,
+			minScale: 0.2,
+			maxScale: 1.0,
 
 			// Display controls in the bottom right corner
 			controls: false,
 
 			// Display a presentation progress bar
-			progress: false,
+			progress: true,
 
 			// Display the page number of the current slide
 			slideNumber: false,

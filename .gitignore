@@ -1,0 +1,12 @@
+.DS_Store
+.svn
+*.class
+
+log/*.log
+tmp/**
+node_modules/
+target/
+
+# vim undo file
+*~
+*.un~
