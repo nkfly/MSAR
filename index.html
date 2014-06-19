@@ -37,6 +37,9 @@
 			}
 		</script>
 
+		<!-- MathJax -->
+		<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -150,17 +153,9 @@
 
 					<section>
 						<h2>BSS-EVAL metrics</h2>
-						<ul>
-							<li>
-							<img src="img/SIR.PNG" alt="SIR" style="height: 100px; vertical-align: middle;">
-							</li>
-							<li>
-							<img src="img/SAR.PNG" alt="SAR" style="height: 100px; vertical-align: middle;">
-							</li>
-							<li>
-							<img src="img/SDR.PNG" alt="SDR" style="height: 100px; vertical-align: middle;">
-							</li>
-						</ul>
+						$$ SIR := 10 \log{10}{\frac{||s_{target}||^2}{||e_{interf}||^2}} $$ <br>
+						$$ SAR := 10 \log{10}{\frac{||s_{target} + e_{interf} + e_{noise}||^2}{||e_{artif}||^2}} $$ <br>
+							$$ SDR := 10 \log{10}{\frac{||s_{target}||^2}{||e_{interf} + e_{noise} + e_{artif}||^2}} $$ <br>
 					</section>
 
 					<section>
