@@ -1,4 +1,4 @@
-img.plain {
-	box-shadow: none !important;
-	border-style: none !important;
+.reveal section img.plain {
+	box-shadow: none;
+	border-style: none;
 }
