@@ -2,3 +2,18 @@
 	box-shadow: none;
 	border-style: none;
 }
+.reveal section div.iframe-wrapper {
+	height: 340px;
+	width: 114%;
+	margin-left: -7.5%;
+}
+.reveal section h3 {
+	text-align: center;
+}
+.reveal section table {
+	width: 100%;
+}
+.reveal section table td {
+	text-align: center;
+	vertical-align: middle;
+}

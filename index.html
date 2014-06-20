@@ -57,22 +57,101 @@
 					<h3>Team 13: 人聲海海</h3>
 					<h3>洪立遠、方昱証、簡名沅</h3>
 					<p>2014-06-19</p>
+					<br>
+					Use PgUp and PgDown to browse the slideshow,<br>
+					ESC to overview.
 				</section>
 
 				<section>
-					<section style="padding: 0; margin: 0">
-						<h3 style="margin:0px">Original Video</h3>
-						<div class="iframe-wrapper" style="height: 340px; width: 114%; margin-left: -7.5%;" class="ui-widget-content">
-							<iframe class="youtube-player" type="text/html" width="500" height="300" src="http://www.youtube.com/embed/7N4rCduwhlk" allowfullscreen frameborder="0">
-							</iframe>
-						</div>
-						<h3 style="margin:0px">Vocal Extracted in the Video</h3>
-						<div class="iframe-wrapper" style="height: 340px; width: 114%; margin-left: -7.5%;" class="ui-widget-content">
-							<iframe class="youtube-player" type="text/html" width="500" height="300" src="http://www.youtube.com/embed/WwY4plZsvF4" allowfullscreen frameborder="0">
-							</iframe>
-						</div>
+					<section>
+						<h1>Results</h1>
+						<p>※ Running time is about three times the duration of the music.</p>
 					</section>
 
+					<section>
+						Linked Horizon - 紅蓮の弓矢<br>
+						<br>
+						<table>
+							<tr>
+								<td style="height: 400px;">
+									<h3>Original Video</h3>
+									<iframe class="youtube-player" style="width: 540px; height: 350px;" src="http://www.youtube.com/embed/7N4rCduwhlk" frameborder="0" allowfullscreen></iframe>
+								</td>
+								<td style="height: 400px;">
+									<h3><em>Extracted Vocal</em></h3>
+									<p>(binary mask on)</p>
+									<iframe class="youtube-player" style="width: 540px; height: 350px;" src="http://www.youtube.com/embed/WwY4plZsvF4" frameborder="0" allowfullscreen></iframe>
+								</td>
+							</tr>
+						</table>
+					</section>
+
+					<section>
+						EGOIST - 名前のない怪物 (1'43")<br>
+						<br>
+						<table>
+							<tr>
+								<td>
+									<h3>Original Music</h3>
+									<audio controls src="audio/in/Namae no nai kaibutsu (TV Edit 92s ver).m4a"></audio>
+								</td>
+								<td>
+									<h3><em>Extracted Vocal</em></h3>
+									<p>binary mask on (better)</p>
+									<audio controls src="audio/out/Namae no nai kaibutsu (TV Edit 92s ver)_vocal_rpca.m4a"></audio>
+								</td>
+								<td>
+									<h3><em>Extracted Vocal</em></h3>
+									<p>no mask</p>
+									<audio controls src="audio/out/Namae no nai kaibutsu (TV Edit 92s ver)_vocal_rpca_no-mask.m4a"></audio>
+								</td>
+							</tr>
+						</table>
+					</section>
+
+					<section>
+						千石撫子 (CV.花澤香菜) - 恋愛サーキュレーション (4'14")<br>
+						<br>
+						<table>
+							<tr>
+								<td rowspan="2">
+									<h3>Original Music</h3>
+									<audio controls src="audio/in/Ren ai Circulation.m4a"></audio>
+								</td>
+								<td>
+									<h3><em>Extracted Vocal</em></h3>
+									<p>binary mask on</p>
+									<audio controls src="audio/out/Ren ai Circulation_vocal_rpca.m4a"></audio>
+									<br><br>
+								</td>
+								<td>
+									<h3><em>Extracted Vocal</em></h3>
+									<p>no mask</p>
+									<audio controls src="audio/out/Ren ai Circulation_vocal_rpca_no-mask.m4a"></audio>
+									<br><br>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<h3>True Vocal</h3>
+									<audio controls src="audio/in/Ren ai Circulation_vocal.m4a"></audio>
+								</td>
+							</tr>
+						</table>
+						<br>
+						<strong>SDR</strong>: -50.952665,
+						<strong>SIR</strong>: -38.409697,<br>
+						<strong>SAR</strong>: -12.293531,
+						<strong>NSDR</strong>: 3.518975
+					</section>
+
+					<section>
+						Examples provided by <a href="https://sites.google.com/site/singingvoiceseparationrpca/">the paper website</a><br><br>
+						<iframe title="YouTube video player" class="youtube-player" type="text/html" src="//www.youtube.com/embed/HdFXqGYmONU?rel=0&amp;wmode=opaque" allowfullscreen="true" frameborder="0" height="355" width="425"></iframe>
+					</section>
+				</section>
+
+				<section>
 					<section>
 						<h2>唱日文歌學日文</h2>
 						<img class="plain stretch" src="img/wutadove_reason.png" alt="reason">
@@ -87,10 +166,8 @@
 				<section>
 					<section>
 						<h1>The Algorithm</h1>
-						<p>
-						SINGING-VOICE SEPARATION FROM MONAURAL RECORDINGS USING
-						<strong>ROBUST PRINCIPAL COMPONENT ANALYSIS</strong>
-						</p>
+						<a href="https://sites.google.com/site/singingvoiceseparationrpca/">SINGING-VOICE SEPARATION FROM MONAURAL RECORDINGS USING
+							<strong>ROBUST PRINCIPAL COMPONENT ANALYSIS</strong></a><br>
 						<small>Huang, P. S., Chen, S. D., Smaragdis, P., &amp; Hasegawa-Johnson, M. (2012, March). Singing-voice separation from monaural recordings using robust principal component analysis. In Acoustics, Speech and Signal Processing (ICASSP), 2012 IEEE International Conference on (pp. 57-60). IEEE.</small>
 					</section>
 
@@ -192,7 +269,7 @@
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
-				backgroundTransition: 'fade',  // default/none/slide/concave/convex/zoom
+				backgroundTransition: 'fade', // default/none/slide/concave/convex/zoom
 
 				// Parallax scrolling
 				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
